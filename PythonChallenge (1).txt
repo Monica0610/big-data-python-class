@@ -1,0 +1,377 @@
+1. Level 0
+
+Question: 
+2 power 38
+Hint: 
+Change the URL with the answer.
+Solution: 
+2**38
+URL: 
+http://www.pythonchallenge.com/pc/def/274877906944.html
+
+
+2. Level 1
+
+Question: 
+K -> M, O -> Q, E -> G
+Hint: 
+every body thinks TWICE before solving this
+Solution: 
+from string import maketrans
+initial = "abcdefghijklmnopqrstuvwxyz"
+final = "cdefghijklmnopqrstuvwxyzab"
+trans = maketrans(initial, final)
+str = "g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc " \
+...     "dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr'q ufw rfgq " \
+...     "rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu " \
+...     "ynnjw ml rfc spj."
+print str.translate(trans)
+Output: i hope you didnt translate it by hand. thats what computers are for. doing it in by hand is inefficient and that's why this text is so long. using string.maketrans() is recommended. now apply on the url.
+Applting it on URL map -> ocr
+URL: 
+http://www.pythonchallenge.com/pc/def/ocr.html
+
+3. Level 2
+
+Question, Hint:
+Recognize the characters. maybe they are in the book, 
+but MAYBE they are in the page source.
+Solution: 
+import re
+import urllib
+import urllib
+src = urllib.urlopen('http://www.pythonchallenge.com/pc/def/ocr.html').read()
+print ''.join(re.findall('[a-z]', src))
+Output: htmlheadtitleocrtitlelinkrelstylesheettypetextcsshrefstylecssheadbodycenterimgsrcocrjpgbrfontcolorcrecognizethecharactersmaybetheyareinthebookbrbuttheyareinthepagesourcecenterbrbrbrfontsizecolorgoldeneraltipslisethehintsheyarehelpfulmostofthetimeslilinvestigatethedatagiventoyoulilivoidlookingforspoilerslibrorumsahrefhttpwwwpythonchallengecomforumsythonhallengeorumsareadbeforeyoupostbrircfreenodenetpythonchallengebrbroseethesolutionstothepreviouslevelreplacepcwithpcciegotohttpwwwpythonchallengecompccdefocrhtmlbodyhtmlfindrarecharactersinthemessbelowequality
+URL: 
+http://www.pythonchallenge.com/pc/def/equality.html
+
+4. Level 3
+
+Question:
+Picture of Three candles on each side of the small candle
+Hint: 
+One small letter, surrounded by EXACTLY three big bodyguards on each of its sides.
+Solution:
+import urllib
+text =  urllib.urlopen('http://www.pythonchallenge.com/pc/def/equality.html').read()
+print ''.join(re.findall('[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]', text))
+URL:
+http://www.pythonchallenge.com/pc/def/linkedlist.html
+
+5. Level 4
+
+Opening URL:
+http://www.pythonchallenge.com/pc/def/linkedlist.php
+
+We can see an image, and clicking on the image takes us to the page that says "and the next nothing is 44827"
+The URL changed to http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=12345
+
+import urllib, re, time
+
+uri = "http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=%s"
+nothing_rep = "and the next nothing is (\d+)"
+nothing = "12345" 
+
+while True:
+    try:
+        source = urllib.urlopen(uri % nothing).read()
+        nothing = re.search(nothing_rep, source).group(1)
+    except:
+        break
+
+    print nothing
+    
+Then reset num to 16044/2
+nothing = str(16044/2)
+
+URL:
+http://www.pythonchallenge.com/pc/def/peak.html
+
+6. Level 5
+
+Question, Hint:
+Pronounce it
+Solution:
+We we pronounce peak hell fastly, it sounds like pickle
+From the page souce: <peakhell src="banner.p"/>
+Pickle is a serialization module in python.
+So we probably have to serialize or deserialize banner.p
+from urllib.request import urlopen
+banner = urlopen("http://www.pythonchallenge.com/pc/def/banner.p").read().decode()
+Output: "(lp0\n(lp1\n(S' '\np2\nI95\ntp3\naa..."
+Let's use pickle to deserialize the data in the banner
+import pickle
+data = pickle.load(urlopen("http://www.pythonchallenge.com/pc/def/banner.p"))
+data
+[[(' ', 95)], [(' ', 14), ('#', 5), (' ', 70), ('#', 5), (' ', 1)], [(' ', 15), ('#', 4), (' ', 71), ('#', 4), (' ', 1)], [(' ', 15), ('#', 4), (' ', 71), ('#', 4), (' ', 1)], [(' ', 15), ('#', 4), (' ', 71), ('#', 4), (' ', 1)], [(' ', 15), ('#', 4), (' ', 71), ('#', 4), (' ', 1)], [(' ', 15), ('#', 4), (' ', 71), ('#', 4), (' ', 1)], [(' ', 15), ('#', 4), (' ', 71), ('#', 4), (' ', 1)], [(' ', 15), ('#', 4), (' ', 71), ('#', 4), (' ', 1)], [(' ', 6), ('#', 3), (' ', 6), ('#', 4), (' ', 3), ('#', 3), (' ', 9), ('#', 3), (' ', 7), ('#', 5), (' ', 3), ('#', 3), (' ', 4), ('#', 5), (' ', 3), ('#', 3), (' ', 10), ('#', 3), (' ', 7), ('#', 4), (' ', 1)], [(' ', 3), ('#', 3), (' ', 3), ('#', 2), (' ', 4), ('#', 4), (' ', 1), ('#', 7), (' ', 5), ('#', 2), (' ', 2), ('#', 3), (' ', 6), ('#', 4), (' ', 1), ('#', 7), (' ', 3), ('#', 4), (' ', 1), ('#', 7), (' ', 5), ('#', 3), (' ', 2), ('#', 3), (' ', 5), ('#', 4), (' ', 1)], [(' ', 2), ('#', 3), (' ', 5), ('#', 3), (' ', 2), ('#', 5), (' ', 4), ('#', 4), (' ', 3), ('#', 3), (' ', 3), ('#', 4), (' ', 4), ('#', 5), (' ', 4), ('#', 4), (' ', 2), ('#', 5), (' ', 4), ('#', 4), (' ', 3), ('#', 3), (' ', 5), ('#', 3), (' ', 3), ('#', 4), (' ', 1)], [(' ', 1), ('#', 3), (' ', 11), ('#', 4), (' ', 5), ('#', 4), (' ', 3), ('#', 3), (' ', 4), ('#', 3), (' ', 4), ('#', 4), (' ', 5), ('#', 4), (' ', 2), ('#', 4), (' ', 5), ('#', 4), (' ', 2), ('#', 3), (' ', 6), ('#', 4), (' ', 2), ('#', 4), (' ', 1)], [(' ', 1), ('#', 3), (' ', 11), ('#', 4), (' ', 5), ('#', 4), (' ', 10), ('#', 3), (' ', 4), ('#', 4), (' ', 5), ('#', 4), (' ', 2), ('#', 4), (' ', 5), ('#', 4), (' ', 2), ('#', 3), (' ', 7), ('#', 3), (' ', 2), ('#', 4), (' ', 1)], [('#', 4), (' ', 11), ('#', 4), (' ', 5), ('#', 4), (' ', 5), ('#', 2), (' ', 3), ('#', 3), (' ', 4), ('#', 4), (' ', 5), ('#', 4), (' ', 2), ('#', 4), (' ', 5), ('#', 4), (' ', 1), ('#', 4), (' ', 7), ('#', 3), (' ', 2), ('#', 4), (' ', 1)], [('#', 4), (' ', 11), ('#', 4), (' ', 5), ('#', 4), (' ', 3), ('#', 10), (' ', 4), ('#', 4), (' ', 5), ('#', 4), (' ', 2), ('#', 4), (' ', 5), ('#', 4), (' ', 1), ('#', 14), (' ', 2), ('#', 4), (' ', 1)], [('#', 4), (' ', 11), ('#', 4), (' ', 5), ('#', 4), (' ', 2), ('#', 3), (' ', 4), ('#', 4), (' ', 4), ('#', 4), (' ', 5), ('#', 4), (' ', 2), ('#', 4), (' ', 5), ('#', 4), (' ', 1), ('#', 4), (' ', 12), ('#', 4), (' ', 1)], [('#', 4), (' ', 11), ('#', 4), (' ', 5), ('#', 4), (' ', 1), ('#', 4), (' ', 5), ('#', 3), (' ', 4), ('#', 4), (' ', 5), ('#', 4), (' ', 2), ('#', 4), (' ', 5), ('#', 4), (' ', 1), ('#', 4), (' ', 12), ('#', 4), (' ', 1)], [(' ', 1), ('#', 3), (' ', 11), ('#', 4), (' ', 5), ('#', 4), (' ', 1), ('#', 4), (' ', 5), ('#', 3), (' ', 4), ('#', 4), (' ', 5), ('#', 4), (' ', 2), ('#', 4), (' ', 5), ('#', 4), (' ', 2), ('#', 3), (' ', 12), ('#', 4), (' ', 1)], [(' ', 2), ('#', 3), (' ', 6), ('#', 2), (' ', 2), ('#', 4), (' ', 5), ('#', 4), (' ', 2), ('#', 3), (' ', 4), ('#', 4), (' ', 4), ('#', 4), (' ', 5), ('#', 4), (' ', 2), ('#', 4), (' ', 5), ('#', 4), (' ', 3), ('#', 3), (' ', 6), ('#', 2), (' ', 3), ('#', 4), (' ', 1)], [(' ', 3), ('#', 3), (' ', 4), ('#', 2), (' ', 3), ('#', 4), (' ', 5), ('#', 4), (' ', 3), ('#', 11), (' ', 3), ('#', 4), (' ', 5), ('#', 4), (' ', 2), ('#', 4), (' ', 5), ('#', 4), (' ', 4), ('#', 3), (' ', 4), ('#', 2), (' ', 4), ('#', 4), (' ', 1)], [(' ', 6), ('#', 3), (' ', 5), ('#', 6), (' ', 4), ('#', 5), (' ', 4), ('#', 2), (' ', 4), ('#', 4), (' ', 1), ('#', 6), (' ', 4), ('#', 11), (' ', 4), ('#', 5), (' ', 6), ('#', 3), (' ', 6), ('#', 6)], [(' ', 95)]]
+
+This looks like it would make a diagram with hashes. So lets print it:
+
+for line in data:
+print("".join([k * v for k, v in line]))
+
+Output:
+Channel
+
+URL:
+http://www.pythonchallenge.com/pc/def/channel.html
+
+
+
+7. Level 6
+
+Question: Image of zipper
+Since I could not find any clue, I navigated to the source code.
+Source code first line: <html> <!-- <-- zip -->
+So, I figured that I could change the .html to .zip
+After unzipping it, I found this in readme.txt:
+welcome to my zipped list.
+
+hint1: start from 90052
+hint2: answer is inside the zip
+
+import zipfile, re
+f = zipfile.ZipFile("resources/channel.zip")
+num = '90052'
+while True:
+    content = f.read(num + ".txt").decode("utf-8")
+    print(content)        
+    match = re.search("Next nothing is (\d+)", content)        
+    if match == None:
+         break
+    num = match.group(1)
+
+Next nothing is 94191
+Next nothing is 85503
+Next nothing is 70877
+...
+Next nothing is 68628
+Next nothing is 67824
+Next nothing is 46145
+Collect the comments.
+
+
+It turns out that zip file may contain some comments, and they can be accessed by
+ZipFile.comment: comment associated with the ZIP file.
+ZipInfo.comment: comment for the individual archive member.
+Adding a few lines to collect the comments:
+num = '90052'
+comments = []
+while True:
+    content = f.read(num + ".txt").decode("utf-8")
+    comments.append(f.getinfo(num + ".txt").comment.decode("utf-8"))
+    content      
+    match = re.search("Next nothing is (\d+)", content)        
+    if match == None:
+        break
+    num = match.group(1)
+
+print("".join(comments))
+
+Output: 
+Hockey
+
+http://www.pythonchallenge.com/pc/def/hockey.html
+It redirects us to a page that says:
+it's in the air. look at the letters.
+
+Oxygen is in the air. And when you take a closer look at the word hockey you can see that they are made up of the letters from the word oxygen.
+
+URL:
+http://www.pythonchallenge.com/pc/def/oxygen.html
+
+8. Level 7
+
+Question: 
+It is a picture of a river, but the picture has a gray scale in it.
+
+Solution:
+Image processing library seems to be the only way to go.
+
+Image library can be imported 
+
+import re, Image
+
+im = Image.open("http://www.pythonchallenge.com/pc/def/oxygen.png")
+
+And get the pixel by providing indices:
+img.getpixel((0,0))
+(79, 92, 23, 255)
+The result is the tuple of (R, G, B, alpha).
+To get the grey scale, we can take the middle row of the pixels:
+row = [img.getpixel((x, img.height / 2)) for x in range(img.width)]
+row
+[(115, 115, 115, 255), (115, 115, 115, 255), (115, 115, 115, 255), ...
+looks like the gray scale is 7 pixels wide
+row = row[::7]
+row
+[(115, 115, 115, 255), (109, 109, 109, 255), (97, 97, 97, 255), ...
+At the end of the array there are some noises: pixels that are not grey scale, which have the same value for R, G, and B. 
+Let us remove those pixels
+ords = [r for r, g, b, a in row if r == g == b]
+"".join(map(chr, ords))
+'smart guy, you made it. the next level is [105, 110, 116, 101, 103, 114, 105, 116, 121]'
+We were right, but it is not over... Do it again on the numbers:
+nums = re.findall("\d+", "".join(map(chr, ords)))
+nums
+['105', '110', '116', '101', '103', '114', '105', '116', '121']
+Finally:
+"".join(map(chr, map(int, nums)))
+'integrity'
+
+URL:
+http://www.pythonchallenge.com/pc/def/integrity.html
+
+
+9. Level 8
+
+Solution:
+import bz2
+
+un = b'BZh91AY&SYA\xaf\x82\r\x00\x00\x01\x01\x80\x02\xc0\x02\x00 \x00!\x9ah3M\x07<]\xc9\x14\xe1BA\x06\xbe\x084'
+pw = b'BZh91AY&SY\x94$|\x0e\x00\x00\x00\x81\x00\x03$ \x00!\x9ah3M\x13<]\xc9\x14\xe1BBP\x91\xf08'
+
+print(bz2.decompress(un))
+print(bz2.decompress(pw))
+
+Output:
+huge
+file
+
+These are the username and password
+
+URL:
+http://www.pythonchallenge.com/pc/return/good.html
+
+
+
+10. Level 9
+
+from the page source,
+<!--
+first+second=?
+
+first:
+146,399,163,403,170,393,169,391,166,386,170,381,170,371,170,355,169,346,167,335,170,329,170,320,170,
+310,171,301,173,290,178,289,182,287,188,286,190,286,192,291,194,296,195,305,194,307,191,312,190,316,
+190,321,192,331,193,338,196,341,197,346,199,352,198,360,197,366,197,373,196,380,197,383,196,387,192,
+389,191,392,190,396,189,400,194,401,201,402,208,403,213,402,216,401,219,397,219,393,216,390,215,385,
+215,379,213,373,213,365,212,360,210,353,210,347,212,338,213,329,214,319,215,311,215,306,216,296,218,
+290,221,283,225,282,233,284,238,287,243,290,250,291,255,294,261,293,265,291,271,291,273,289,278,287,
+279,285,281,280,284,278,284,276,287,277,289,283,291,286,294,291,296,295,299,300,301,304,304,320,305,
+327,306,332,307,341,306,349,303,354,301,364,301,371,297,375,292,384,291,386,302,393,324,391,333,387,
+328,375,329,367,329,353,330,341,331,328,336,319,338,310,341,304,341,285,341,278,343,269,344,262,346,
+259,346,251,349,259,349,264,349,273,349,280,349,288,349,295,349,298,354,293,356,286,354,279,352,268,
+352,257,351,249,350,234,351,211,352,197,354,185,353,171,351,154,348,147,342,137,339,132,330,122,327,
+120,314,116,304,117,293,118,284,118,281,122,275,128,265,129,257,131,244,133,239,134,228,136,221,137,
+214,138,209,135,201,132,192,130,184,131,175,129,170,131,159,134,157,134,160,130,170,125,176,114,176,
+102,173,103,172,108,171,111,163,115,156,116,149,117,142,116,136,115,129,115,124,115,120,115,115,117,
+113,120,109,122,102,122,100,121,95,121,89,115,87,110,82,109,84,118,89,123,93,129,100,130,108,132,110,
+133,110,136,107,138,105,140,95,138,86,141,79,149,77,155,81,162,90,165,97,167,99,171,109,171,107,161,
+111,156,113,170,115,185,118,208,117,223,121,239,128,251,133,259,136,266,139,276,143,290,148,310,151,
+332,155,348,156,353,153,366,149,379,147,394,146,399
+
+second:
+156,141,165,135,169,131,176,130,187,134,191,140,191,146,186,150,179,155,175,157,168,157,163,157,159,
+157,158,164,159,175,159,181,157,191,154,197,153,205,153,210,152,212,147,215,146,218,143,220,132,220,
+125,217,119,209,116,196,115,185,114,172,114,167,112,161,109,165,107,170,99,171,97,167,89,164,81,162,
+77,155,81,148,87,140,96,138,105,141,110,136,111,126,113,129,118,117,128,114,137,115,146,114,155,115,
+158,121,157,128,156,134,157,136,156,136
+
+-->
+
+from PIL import Image,ImageDraw
+im = Image.new('RGB', (500,500))
+draw = ImageDraw.Draw(im)
+draw.polygon(first, fill='white')
+draw.polygon(second, fill='white')
+im.show()
+
+Output:
+We can see an image of a bull
+
+URL:
+
+http://www.pythonchallenge.com/pc/def/bull.html
+
+
+11. Level 10
+
+Question:
+There is a picture of a cow and a calf
+Hint len(a[30])=?
+
+Solution:
+The hint seems to pertain to an array. But where is the array?
+There is no array in the source code as well. 
+when you hover your mouse on the picture, you discover that you can click the image of the cow.
+It redirects you to a page that has an array. 
+a = [1, 11, 21, 1211, 111221, 
+There you go..
+So what is a[30] and what is the length of it?
+
+
+import itertools
+
+def lcalculator (length):
+    table = {
+        ("1", "1", "1"): "31",
+        ("1", "1"): "21",
+        ("1", ): "11",
+        ("2", "2", "2"): "32",
+        ("2", "2"): "22",
+        ("2", ): "12",
+        ("3", "3", "3"): "33",
+        ("3", "3"): "23",
+        ("3", ): "13"
+    }
+
+    prec, result = "1", [1]
+
+    for i in xrange(length - 1):
+        p = "".join(table[tuple(l)] for e, l in itertools.groupby(p))
+        result.append(int(p))
+
+    return result
+
+print len(str(lcalculator(31)[30]))
+
+Output: 
+5808
+
+URL:
+http://www.pythonchallenge.com/pc/return/5808.html
+
+12. Level 11
+
+Question:
+
+A very blurred image.
+The page title says odd even.
+We might have to split the image by odd or even.
+
+import Image
+
+image = Image.open('im.jpg')
+(w, h) = image.size
+
+even = Image.new('RGB', (w // 2, h // 2))
+odd = Image.new('RGB', (w // 2, h // 2))
+
+for i in range(w):
+    for j in range(h):
+        p = image.getpixel((i,j))
+        if (i+j)%2 == 1:
+            odd.putpixel((i // 2, j // 2), p)
+        else:
+            even.putpixel((i // 2, j // 2), p)
+even.save('even.jpg')
+odd.save('odd.jpg')
+When you open even.jpg, you will see a word evil
+
+URL:
+
+http://www.pythonchallenge.com/pc/return/evil.html
+
+
